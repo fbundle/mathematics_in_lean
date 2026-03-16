@@ -82,8 +82,24 @@ example : (s \ t) \ u ⊆ s \ (t ∪ u) := by
   use xs
   rintro (xt | xu) <;> contradiction
 
+
 example : s \ (t ∪ u) ⊆ (s \ t) \ u := by
-  sorry
+  -- khanh
+  intro x (hx: x ∈ s \ (t ∪ u))
+  let x_in_s := hx.left
+  let x_notin_t_cup_u := hx.right
+  let x_notin_t: x ∉ t := by
+    intro x_in_t
+    let x_in_t_cup_u: x ∈ t ∪ u := Or.inl x_in_t
+    exact x_notin_t_cup_u x_in_t_cup_u
+
+  let x_notin_u: x ∉ u := by
+    intro x_in_u
+    let x_in_t_cup_u: x ∈ t ∪ u := Or.inr x_in_u
+    exact x_notin_t_cup_u x_in_t_cup_u
+
+  let x_in_s_sub_t: x ∈ s \ t := ⟨x_in_s, x_notin_t⟩
+  exact ⟨x_in_s_sub_t, x_notin_u⟩
 
 
 
