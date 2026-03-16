@@ -7,10 +7,19 @@ example (a b c : ℝ) : a * b * c = b * (a * c) := by
 
 -- Try these.
 example (a b c : ℝ) : c * b * a = b * (a * c) := by
-  sorry
+  -- sorry
+  -- khanh
+  rw [mul_comm a c]
+  rw [mul_comm c b]
+  rw [mul_assoc b c a]
+
 
 example (a b c : ℝ) : a * (b * c) = b * (a * c) := by
-  sorry
+  -- sorry
+  -- khanh
+  rw [← mul_assoc a b c]
+  rw [mul_comm a b]
+  rw [mul_assoc b a c]
 
 -- An example.
 example (a b c : ℝ) : a * b * c = b * c * a := by
@@ -33,10 +42,22 @@ example (a b c d e f : ℝ) (h : a * b = c * d) (h' : e = f) : a * (b * e) = c *
   rw [mul_assoc]
 
 example (a b c d e f : ℝ) (h : b * c = e * f) : a * b * c * d = a * e * f * d := by
-  sorry
+  -- sorry
+  -- khanh
+  rw [mul_assoc a b c]
+  rw [mul_assoc a e f]
+  rw [h]
+
+#check sub_self
 
 example (a b c d : ℝ) (hyp : c = b * a - d) (hyp' : d = a * b) : c = 0 := by
-  sorry
+  -- sorry
+  -- khanh
+  rw [hyp]
+  rw [hyp']
+  let h₃: b * a = a * b := mul_comm b a
+  rw [h₃]
+  rw [sub_self (a * b)]
 
 example (a b c d e f : ℝ) (h : a * b = c * d) (h' : e = f) : a * (b * e) = c * (d * f) := by
   rw [h', ← mul_assoc, h, mul_assoc]
@@ -82,13 +103,18 @@ example : (a + b) * (a + b) = a * a + 2 * (a * b) + b * b :=
       rw [mul_comm b a, ← two_mul]
 
 example : (a + b) * (a + b) = a * a + 2 * (a * b) + b * b :=
+  -- khanh
   calc
     (a + b) * (a + b) = a * a + b * a + (a * b + b * b) := by
-      sorry
+      rw [mul_add (a + b) a b]
+      rw [add_mul a b a]
+      rw [add_mul a b b]
     _ = a * a + (b * a + a * b) + b * b := by
-      sorry
+      rw [← add_assoc (a * a + b * a) (a * b) (b * b)]
+      rw [← add_assoc (a * a) (b * a) (a * b)]
     _ = a * a + 2 * (a * b) + b * b := by
-      sorry
+      rw [mul_comm a b]
+      rw [two_mul (b * a)]
 
 end
 
