@@ -53,13 +53,26 @@ theorem neg_add_cancel_left (a b : R) : -a + (a + b) = b := by
 
 -- Prove these:
 theorem add_neg_cancel_right (a b : R) : a + b + -b = a := by
-  sorry
+  -- khanh
+  rw [add_assoc a b (-b)]
+  rw [add_comm b (-b)]
+  rw [neg_add_cancel b]
+  rw [add_comm a 0]
+  rw [zero_add a]
 
 theorem add_left_cancel {a b c : R} (h : a + b = a + c) : b = c := by
-  sorry
+  -- khanh
+  rw [← add_neg_cancel_right b a]
+  rw [add_comm b a]
+  rw [h]
+  rw [add_comm a c]
+  rw [add_neg_cancel_right c a]
 
 theorem add_right_cancel {a b c : R} (h : a + b = c + b) : a = c := by
-  sorry
+  -- khanh
+  rw [← add_neg_cancel_right a b]
+  rw [h]
+  rw [add_neg_cancel_right c b]
 
 theorem mul_zero (a : R) : a * 0 = 0 := by
   have h : a * 0 + a * 0 = a * 0 + 0 := by
@@ -67,7 +80,13 @@ theorem mul_zero (a : R) : a * 0 = 0 := by
   rw [add_left_cancel h]
 
 theorem zero_mul (a : R) : 0 * a = 0 := by
-  sorry
+  -- khanh
+  let h : 0 * a + 0 * a = 0 * a + 0 := by
+    rw [← add_mul 0 0 a]
+    rw [zero_add 0]
+    rw [add_zero (0 * a)]
+
+  rw [add_left_cancel h]
 
 theorem neg_eq_of_add_eq_zero {a b : R} (h : a + b = 0) : -a = b := by
   sorry
@@ -143,4 +162,3 @@ theorem mul_inv_rev (a b : G) : (a * b)⁻¹ = b⁻¹ * a⁻¹ := by
 end MyGroup
 
 end
-
