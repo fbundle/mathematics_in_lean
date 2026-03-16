@@ -48,6 +48,9 @@ example : s ∩ (t ∪ u) ⊆ s ∩ t ∪ s ∩ u := by
 
 example : s ∩ t ∪ s ∩ u ⊆ s ∩ (t ∪ u) := by
   -- khanh
+  -- tactic mode 🤮
+  -- we just treat `intro` as "getting the arguments"
+  -- and `exact` as "returning the value"
   intro x (hx: x ∈ s ∩ t ∪ s ∩ u)
   cases hx with
     | inl h1 =>
