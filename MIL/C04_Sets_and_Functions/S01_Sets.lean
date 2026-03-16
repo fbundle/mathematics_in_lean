@@ -101,9 +101,6 @@ example : s \ (t ∪ u) ⊆ (s \ t) \ u := by
   let x_in_s_sub_t: x ∈ s \ t := ⟨x_in_s, x_notin_t⟩
   exact ⟨x_in_s_sub_t, x_notin_u⟩
 
-
-
-
 example : s ∩ t = t ∩ s := by
   ext x
   simp only [mem_inter_iff]
