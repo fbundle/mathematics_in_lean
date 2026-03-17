@@ -13,6 +13,13 @@ variable (u v : Set β)
 open Function
 open Set
 
+-- let f: A -> B and U ⊆ A and V ⊆ B
+-- x ∈ f ⁻¹' V    is defined by fx ∈ V
+-- y ∈ f '' U     is defined by ∃ (x ∈ U), fx = y
+
+
+
+
 example : f ⁻¹' (u ∩ v) = f ⁻¹' u ∩ f ⁻¹' v := by
   ext
   rfl
