@@ -34,7 +34,31 @@ example : s ⊆ f ⁻¹' (f '' s) := by
   use x, xs
 
 example : f '' s ⊆ v ↔ s ⊆ f ⁻¹' v := by
-  sorry
+  -- khanh
+  let forward: f '' s ⊆ v → s ⊆ f ⁻¹' v := by
+    intro (fs_sub_v: f '' s ⊆ v)
+    intro (x: α) (hx: x ∈ s)
+    let hxx : f x ∈ f '' s := by
+      exact Exists.intro x (And.intro hx rfl)
+      -- exact ⟨x, hx, rfl⟩
+    exact fs_sub_v hxx
+
+  let backward: s ⊆ f ⁻¹' v → f '' s ⊆ v := by
+    intro (s_sub_fm1v: s ⊆ f ⁻¹' v)
+    intro y hy
+    cases hy with
+      | intro x hx =>
+        let x_in_s: x ∈ s := hx.left
+        let fx_eq_y: f x = y := hx.right
+        let x_in_fm1v: x ∈ f ⁻¹' v := s_sub_fm1v x_in_s
+        let fx_in_v : f x ∈ v := x_in_fm1v
+
+        let y_in_v : y ∈ v := by
+          rw [← fx_eq_y]
+          exact fx_in_v
+        exact y_in_v
+
+  exact Iff.intro forward backward
 
 example (h : Injective f) : f ⁻¹' (f '' s) ⊆ s := by
   sorry

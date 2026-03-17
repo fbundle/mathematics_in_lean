@@ -86,7 +86,8 @@ example : (s \ t) \ u ⊆ s \ (t ∪ u) := by
 -- x ∉ u        is defined as ¬ (x ∈ u)
 -- x ∈ u ∩ v    is defined as (x ∈ u) ∧ (x ∈ v)
 -- x ∈ u ∪ v    is defined as (x ∈ u) ∨ (x ∈ v)
--- x ∈ u \ v    is defined as (x ∈ u) ∨ (x ∉ v)
+-- x ∈ u \ v    is defined as (x ∈ u) ∧ (x ∉ v)
+-- u ⊆ v        is defined as ∀(x: α), x ∈ u → x ∈ v
 
 
 example : s \ (t ∪ u) ⊆ (s \ t) \ u := by
@@ -104,8 +105,8 @@ example : s \ (t ∪ u) ⊆ (s \ t) \ u := by
     let x_in_t_cup_u: x ∈ t ∪ u := Or.inr x_in_u
     exact x_notin_t_cup_u x_in_t_cup_u
 
-  let x_in_s_sub_t: x ∈ s \ t := ⟨x_in_s, x_notin_t⟩
-  exact ⟨x_in_s_sub_t, x_notin_u⟩
+  let x_in_s_sub_t: x ∈ s \ t := And.intro x_in_s x_notin_t
+  exact And.intro x_in_s_sub_t x_notin_u
 
 example : s ∩ t = t ∩ s := by
   ext x
