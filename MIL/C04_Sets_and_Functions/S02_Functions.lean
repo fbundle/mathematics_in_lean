@@ -70,6 +70,7 @@ example : f '' s ⊆ v ↔ s ⊆ f ⁻¹' v := by
   -- like if someone works in algebra for a long time
   -- when they see a result, they will immediately know what the necessary-sufficient conditions are
   -- maybe this is why mathematicians prefer tactic mode
+  -- but will they make mistakes? I believe yes
   simp [subset_def, image, preimage]
 
 example (h : Injective f) : f ⁻¹' (f '' s) ⊆ s := by
