@@ -82,6 +82,12 @@ example : (s \ t) \ u ⊆ s \ (t ∪ u) := by
   use xs
   rintro (xt | xu) <;> contradiction
 
+-- x ∈ u        is a proposition
+-- x ∉ u        is defined as ¬ (x ∈ u)
+-- x ∈ u ∩ v    is defined as (x ∈ u) ∧ (x ∈ v)
+-- x ∈ u ∪ v    is defined as (x ∈ u) ∨ (x ∈ v)
+-- x ∈ u \ v    is defined as (x ∈ u) ∨ (x ∉ v)
+
 
 example : s \ (t ∪ u) ⊆ (s \ t) \ u := by
   -- khanh
