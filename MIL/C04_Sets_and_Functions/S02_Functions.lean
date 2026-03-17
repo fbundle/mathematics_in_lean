@@ -60,6 +60,12 @@ example : f '' s ⊆ v ↔ s ⊆ f ⁻¹' v := by
 
   exact Iff.intro forward backward
 
+example : f '' s ⊆ v ↔ s ⊆ f ⁻¹' v := by
+  -- chatgpt
+  -- tactics indeed automate many things
+  -- but do it feel like a proof anymore?
+  simp [subset_def, image, preimage]
+
 example (h : Injective f) : f ⁻¹' (f '' s) ⊆ s := by
   sorry
 
