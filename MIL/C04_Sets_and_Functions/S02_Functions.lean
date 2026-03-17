@@ -61,9 +61,15 @@ example : f '' s ⊆ v ↔ s ⊆ f ⁻¹' v := by
   exact Iff.intro forward backward
 
 example : f '' s ⊆ v ↔ s ⊆ f ⁻¹' v := by
-  -- chatgpt
+  -- chatgpt solution
   -- tactics indeed automate many things
-  -- but do it feel like a proof anymore?
+  -- but does it feel like a proof anymore?
+  -- if someone asked me this question, mentally I will do the previous proof
+  -- i.e. decomposing it into smaller statements, proof them, and reconstruct them back
+  -- maybe, there's a leap of abstraction I haven't seen
+  -- like if someone works in algebra for a long time
+  -- when they see a result, they will immediately know what the necessary-sufficient conditions are
+  -- maybe this is why mathematicians prefer tactic mode
   simp [subset_def, image, preimage]
 
 example (h : Injective f) : f ⁻¹' (f '' s) ⊆ s := by
